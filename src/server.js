@@ -1,10 +1,18 @@
+require("./models/User");
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+
+const authRoutes = require("./routes/authRoutes");
+const requireAuth = require("./midllewares/requireAuth");
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(authRoutes);
+
 const mongoUri =
-  "mongodb+srv://admin:homealone@cluster0-gpnce.mongodb.net/test?retryWrites=true&w=majority";
+  "mongodb+srv://admin:rocketman@cluster0-l8a26.mongodb.net/test?retryWrites=true&w=majority";
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -18,8 +26,8 @@ mongoose.connection.on("error", (err) => {
   console.error("Error connenting to mongo", err);
 });
 
-app.get("/", (req, res) => {
-  res.send("hi");
+app.get("/", requireAuth, (req, res) => {
+  res.send(`Your email${req.user.email}`);
 });
 
 app.listen(3000, () => {
