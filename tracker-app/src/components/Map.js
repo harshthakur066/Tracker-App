@@ -20,17 +20,20 @@ const Map = () => {
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
       }}
-      // region={{
-      //   ...currentLocation.coords,
-      //   latitudeDelta: 0.01,
-      //   longitudeDelta: 0.01,
-      // }}
+      // followUserLocation={true}
+      showsUserLocation={true}
+      // ref={(ref) => (this.mapView = ref)}
+      region={{
+        ...currentLocation.coords,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
+      }}
     >
-      <Circle
+      {/* <Circle
         center={currentLocation.coords}
         radius={24}
         fillColor="rgb(158,158,255)"
-      />
+      /> */}
     </MapView>
   );
 };
