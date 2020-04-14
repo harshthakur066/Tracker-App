@@ -25,7 +25,7 @@ const TrackCreateScreen = ({ isFocused }) => {
   const [err] = useLocation(isFocused || recording, callback);
   // console.log(isFocused);
   return (
-    <SafeAreaView style={{ flex: 1 }} forceInset={{ top: "always" }}>
+    <SafeAreaView forceInset={{ top: "always" }}>
       <Text h2>Create A Track</Text>
       <Map />
       {err ? <Text>Please enable location services</Text> : null}
